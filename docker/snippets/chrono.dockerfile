@@ -61,7 +61,7 @@ RUN git clone --recursive -b ${CHRONO_BRANCH} ${CHRONO_REPO} ${CHRONO_DIR} && \
     cd ${CHRONO_DIR}/build && \
     cmake ../ -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
-        -DBUILD_DEMOS=OFF \
+        -DBUILD_DEMOS=ON \
         -DBUILD_BENCHMARKING=OFF \
         -DBUILD_TESTING=OFF \
         -DENABLE_MODULE_VEHICLE=ON \
@@ -95,3 +95,5 @@ RUN chown -R ${USERNAME}:${USERNAME} ${CHRONO_DIR} ${ROS_WORKSPACE_DIR}
 RUN echo ". ${ROS_WORKSPACE_DIR}/install/setup.sh" >> ${USERSHELLPROFILE} && \
     echo "export PYTHONPATH=\$PYTHONPATH:${CHRONO_INSTALL_DIR}/share/chrono/python" >> ${USERSHELLPROFILE} && \
     echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:${CHRONO_INSTALL_DIR}/lib:/opt/urdf/lib:/opt/vsg/lib" >> ${USERSHELLPROFILE}
+
+RUN apt-get update && apt-get install -y nano
